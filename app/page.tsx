@@ -598,6 +598,28 @@ setFeedbackData((prev) => [
   moveToNextCreative();
 };
 
+
+const resetSurvey = () => {
+  setForm({
+    name: "",
+    age: "",
+    gender: "",
+    geography: "",
+    shoppingHabit: "",
+  });
+
+  setCreativeOrder([]);
+  setCurrentIndex(0);
+  setRanking([]);
+  setQuestion(null);
+  setFeedbackData([]);
+  setAnswer("");
+  setSurveyImprovement("");
+  setMemorableCreative("");
+  setDragStart(null);
+  setDragX(0);
+  setScreen("form");
+};
   // Mouse / touch dragging
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     setDragStart(e.clientX);
@@ -1074,7 +1096,15 @@ if (screen === "thankyou") {
             <br />
             We really appreciate your time.
           </p>
-
+          
+          <button
+  type="button"
+  onClick={resetSurvey}
+  className="w-full bg-black text-white rounded-xl py-3.5 mt-6 font-medium hover:bg-gray-800 transition"
+>
+  Submit Another Response
+</button>
+         
         </div>
 
       </div>
@@ -1206,7 +1236,7 @@ if (screen === "thankyou") {
               Quick feedback
             </p>
 
-            <h2 className="text-xl font-semibold mb-3">
+            <h2 className="text-xl font-semibold mb-3 text-black">
 
               {question === "like"
                 ? "What did you like about this creative?"
@@ -1223,7 +1253,7 @@ if (screen === "thankyou") {
     : "Tell us what you didn’t like..."
 }
               rows={5}
-              className="w-full border border-gray-200 rounded-xl p-4 outline-none focus:border-black resize-none"
+              className="w-full border border-gray-200 rounded-xl p-4 text-black placeholder:text-gray-400 outline-none focus:border-black resize-none"
               required
             />
 
